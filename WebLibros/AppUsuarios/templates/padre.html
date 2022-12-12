@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        {% load static %}
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>WebLibros</title>
+        <!-- Favicon-->
+        <link rel="icon" type="image/x-icon" href="{%static 'AppUsuarios/assets/favicon.ico'%}" />
+        <!-- Bootstrap icons-->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" type="text/css" />
+        <!-- Google fonts-->
+        <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="{%static 'AppUsuarios/css/styles.css'%}" rel="stylesheet" />
+    </head>
+    <body>
+        <!-- Navigation-->
+        <nav class="navbar navbar-light bg-light static-top">
+            <div class="container">
+                <a class="navbar-brand" href="{% url 'Inicio' %}">WebLibros</a>
+                <a class="btn btn-light" href="{% url 'ListarTerror' %}">Terror</a>
+                <a class="btn btn-light" href="{% url 'ListarCienciaFiccion' %}">Ciencia ficcion</a>
+                <a class="btn btn-light" href="{% url 'ListarDistopia' %}">Distopia</a>
+                <a class="btn btn-light" href="{% url 'ListarFantasia' %}">Fantasia</a>
+                {% if request.user.is_authenticated %}
+                <div class="dropdown">
+                    <button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                        <img style="width:2em" class="rounded border border-dark" src="{{avatar_url}}">
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                        <p class="text-center">{{user.username}}</p>
+                        {% if user.is_superuser %}
+                        <li><a class="btn btn-outline-danger w-100" href="/admin">Admin panel</a></li>
+                        {% endif %}
+                        <li><a class="btn btn-outline-dark w-100" href="{% url 'EditarPerfil' %}">Editar perfil</a></li>
+                        <li><a class="btn btn-outline-dark w-100" href="{% url 'Logout' %}">Cerrar sesión</a></li>
+                    </ul>
+                </div>
+                {% else %}
+                <a class="btn btn-light" href="{% url 'Login' %}">Iniciar sesión</a>
+                {% endif %}
+
+            </div>
+        </nav>
+        <!-- Masthead-->
+        <header class="masthead">
+            <div class="container position-relative">
+                <div class="row justify-content-center">
+                    <div class="col-xl-6">
+                        <div class="text-center text-white">
+                            <!-- Page heading-->
+                            <h1 class="mb-5">
+                                {% block titulo %}
+                                {% endblock %}
+                            </h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <div class="container justify-content-center">
+            {% block contenido %}
+            {% endblock %}
+        </div>
+        <!-- Footer-->
+        <footer class="footer bg-light">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6 h-100 text-center text-lg-start my-auto">
+                        <ul class="list-inline mb-2">
+                            <li class="list-inline-item"><a href="{% url 'SobreMi' %}">Sobre mi</a></li>
+
+                        </ul>
+                        <p class="text-muted small mb-4 mb-lg-0">&copy; WebLibros 2022. All Rights Reserved.</p>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <!-- Bootstrap core JS-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Core theme JS-->
+        <script src="{%static 'AppUsuarios/js/scripts.js'%}"></script>
+        <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
+        <!-- * *                               SB Forms JS                               * *-->
+        <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
+        <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
+        <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+    </body>
+</html>

@@ -1,0 +1,21 @@
+{% extends 'padre.html'%}
+{%load static%}
+{%block titulo%}
+Terror
+{%endblock%}
+{%block contenido%}
+<a class="btn btn-outline-success float-end" href="{% url 'CrearTerror' %}">Nuevo</a>
+{% if object_list %}
+    {% for libro in object_list %}
+        <div class="container shadow m-3 p-3 rounded">
+            <h4>{{libro.titulo}}, {{libro.autor}}</h4>
+            <img class="img-fluid rounded mx-auto d-block" src="{{libro.url_portada}}" alt="{{libro.titulo}}" width="400" height="600">
+            <a class="btn btn-outline-danger" href="{% url 'EliminarTerror' libro.id %}">Eliminar</a>
+            <a class="btn btn-outline-primary" href="{% url 'EditarTerror' libro.id %}">Editar</a>
+            <a class="btn btn-outline-secondary" href="{% url 'DetallarTerror' libro.id %}">Detalle</a>
+        </div>
+    {%endfor%}
+{% else %}
+<h2>No hay libros cargados aún</h2>
+{% endif %}
+{%endblock%}

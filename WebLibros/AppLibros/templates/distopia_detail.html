@@ -1,0 +1,14 @@
+{% extends 'padre.html'%}
+{%load static%}
+{%block titulo%}
+Distopia: Detalle
+{%endblock%}
+{%block contenido%}
+<p><b>Titulo:</b> {{object.titulo}}</p>
+<p><b>Autor:</b> {{object.autor}}</p>
+<p><b>Fecha de publicación:</b> {{object.publicacion}}</p>
+<p><b>Sinopsis:</b> {{object.sinopsis}}</p>
+<img class="img-fluid rounded mx-auto d-block" src="{{object.url_portada}}" alt="{{object.titulo}}" width="400" height="600">
+<p class="text-end text-muted">{{object.publicacion_en_foro}}</p>
+<a class="btn btn-outline-primary" href="{% url 'ListarDistopia' %}">Regresar</a>
+{%endblock%}

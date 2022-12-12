@@ -1,0 +1,18 @@
+{% extends 'padre.html'%}
+{%load static%}
+{%block titulo%}
+Login
+{%endblock%}
+{%block contenido%}
+<form method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    {% if mensaje %}
+        <div class="alert alert-danger" role="alert">
+            {{mensaje}}
+        </div>
+    {% endif %}
+    <input class="btn btn-outline-success" type="submit" value="Registrarse">
+</form>
+
+{%endblock%}

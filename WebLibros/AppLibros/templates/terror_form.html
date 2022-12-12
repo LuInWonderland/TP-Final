@@ -1,0 +1,11 @@
+{% extends 'padre.html'%}
+{%load static%}
+{%block titulo%}
+Terror: Formulario
+{%endblock%}
+{%block contenido%}
+<form method="POST">{% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" name="Enviar">
+</form>
+{%endblock%}
